@@ -8,9 +8,15 @@ mod utils;
 
 fn main() {
     // Initialize the lexer, parser, and code generator
-    let input = "your source code here"; // Placeholder for the source code input
-    let lexer = lexer::Lexer::new(input);
-    let tokens = lexer.next_token(); // Tokenize the input
+    let input = "your source code here".to_string(); // Placeholder for the source code input
+    let mut lexer = lexer::Lexer::new(input);
+    let tokens = match lexer.next_token() {
+        Some(value) => value,
+        None => {
+            println!("No tokens found");
+            return;
+        }
+    };
 
     let parser = parser::Parser::new(tokens);
     let ast = parser.parse(); // Parse tokens into an AST
