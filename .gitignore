@@ -1,0 +1,33 @@
+# Compiled output
+/target/
+
+# Rust/Cargo-specific files
+**/*.rs.bk
+Cargo.lock
+
+# Optional: Ignore Cargo.lock for libraries, but keep for binaries/apps
+# See: https://doc.rust-lang.org/cargo/faq.html#why-do-binaries-have-cargolock-in-version-control-but-not-libraries
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*~
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Misc
+*.bak
+*.tmp
+*.old
