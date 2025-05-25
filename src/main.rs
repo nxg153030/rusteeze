@@ -8,7 +8,7 @@ mod utils;
 
 fn main() {
     // Initialize the lexer, parser, and code generator
-    let input = "your source code here".to_string(); // Placeholder for the source code input
+    let input = "1 + (2 * 3)".to_string();
     let mut lexer = lexer::Lexer::new(input);
     let tokens = match lexer.next_token() {
         Some(value) => value,
@@ -19,10 +19,16 @@ fn main() {
     };
 
     let parser = parser::Parser::new(tokens);
-    let ast = parser.parse(); // Parse tokens into an AST
+    let ast = match parser.parse() {
+        Ok(ast) => ast, // Successfully parsed AST
+        Err(err) => {
+            println!("Parsing error: {}", err);
+            return;
+        }
+    }; // Parse tokens into an AST
 
     let codegen = codegen::Codegen::new();
-    let target_code = codegen.generate_code(ast); // Generate target code
+    let target_code = codegen.generate_code(&ast); // Generate target code
 
     // Output the generated code
     println!("{}", target_code);

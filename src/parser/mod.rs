@@ -1,3 +1,5 @@
+use crate::ast::AST;
+
 pub struct Parser {
     // Fields for the parser can be defined here
     input: String
@@ -16,8 +18,10 @@ impl Parser {
         let mut iter = tokens.iter().peekable();
 
         let mut left = match iter.next() {
-            Some(token) => AST::Number(token.parse::i32().map_err(|_| "Invalid number")?),
+            Some(token) => AST::Number(token.parse::<i32>().map_err(|_| "Invalid number")?),
             None => return Err("Empty input".to_string()),
         };
+
+        Ok(left)
     }
 }
